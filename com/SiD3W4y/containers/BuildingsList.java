@@ -61,5 +61,19 @@ public class BuildingsList {
 		
 		return jsob;
 	}
+	
+	public ArrayList<BuildingObject> getBuildings(int id){
+		ArrayList<BuildingObject> objlist = new ArrayList<BuildingObject>();
+		
+		for(int i=0;i < buildingObjs.size();i++){
+			BuildingObject bo = buildingObjs.get(i);
+			
+			if(bo.getBuildingID() == id){
+				objlist.add(bo);
+			}
+		}
+		
+		return objlist;
+	}
 
 }
