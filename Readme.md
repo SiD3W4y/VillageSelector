@@ -11,3 +11,6 @@
 
 - Do you have some sample code ?
 ***Yes in test folder***
+
+- What is that village.txt file ?
+**It is the file used for the example (in com/SiD3W4y/tests/Main.java)***

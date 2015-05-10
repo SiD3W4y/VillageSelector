@@ -14,7 +14,7 @@ public class Leagues {
 	public static int GOLD_I = 9;
 	public static int CRYSTAL_III = 10;
 	public static int CRYSTAL_II = 11;
-	public static int CRYSTAl_I = 12;
+	public static int CRYSTAL_I = 12;
 	public static int MASTER_III = 13;
 	public static int MASTER_II = 14;
 	public static int MASTER_I = 15;
