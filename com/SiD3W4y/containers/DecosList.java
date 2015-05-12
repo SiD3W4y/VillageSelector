@@ -54,5 +54,9 @@ public class DecosList {
 		
 		return objlist;
 	}
+	
+	public ArrayList<GameObject> getAllObjects(){
+		return decosObjs;
+	}
 
 }

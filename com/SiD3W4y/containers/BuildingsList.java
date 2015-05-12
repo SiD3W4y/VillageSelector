@@ -74,5 +74,9 @@ public class BuildingsList {
 		
 		return objlist;
 	}
+	
+	public ArrayList<GameObject> getAllObjects(){
+		return buildingObjs;
+	}
 
 }

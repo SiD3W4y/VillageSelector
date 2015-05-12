@@ -74,6 +74,10 @@ public class TrapsList {
 		
 		return objlist;
 	}
+	
+	public ArrayList<GameObject> getAllObjects(){
+		return trapsObjs;
+	}
 
 
 }
