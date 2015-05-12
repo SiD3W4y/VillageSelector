@@ -4,7 +4,7 @@ import com.SiD3W4y.containers.BuildingsList;
 import com.SiD3W4y.containers.DecosList;
 import com.SiD3W4y.containers.TrapsList;
 import com.SiD3W4y.containers.respawnVars;
-import com.SiD3W4y.Objects.Buildings;
+import com.SiD3W4y.objects.Buildings;
 
 import org.json.*;
 
@@ -20,15 +20,12 @@ public class Village {
 	private JSONArray newShopBuildings;
 	private JSONArray newShopTraps;
 	private JSONArray newShopDecos;
-	private JSONArray traps;
-	private JSONArray decos;
 	
-	
-	// Data container
+	// Data containers
 	
 	private BuildingsList buildingLST;
-	//private DecosList decosLST;  *** Not used for now , cause it's not implemented in the server yet
-	//private TrapsList trapsLST;  *** Not used for now , cause it's not implemented in the server yet
+	private DecosList decosLST;
+	private TrapsList trapsLST;
 	private respawnVars RespawnVars;
 	
 	// End of village files vars
@@ -37,6 +34,12 @@ public class Village {
 	private int last_league_shuffle;
 	private int last_news_seen;
 	private boolean edit_mode_shown;
+	
+	// Booleans used for compatibility with ucs (fields missing)
+	private boolean has_shopBuildings;
+	private boolean has_shopTraps;
+	private boolean has_shopDecos;
+	private boolean has_respawnVars;
 	
 	
 	
@@ -57,24 +60,30 @@ public class Village {
 		cooldowns = new JSONArray();
 		
 		// Creating traps array (empty for now)
-		traps = new JSONArray();
+		trapsLST = new TrapsList(js.getJSONArray("traps"));
 		
 		// Creating decos array (empty for now)
-		decos = new JSONArray();
+		decosLST = new DecosList(js.getJSONArray("decos"));
 		
 		// Creating newShopBuildings array
-		newShopBuildings = new JSONArray();
+		if(js.has("newShopBuildings")){
+		has_shopBuildings = true;
 		newShopBuildings = js.getJSONArray("newShopBuildings");
-		
-		// Creating newShopTraps array 
-		newShopTraps = new JSONArray();
+		}
+		// Creating newShopTraps array
+		if(js.has("newShopTraps")){
+		has_shopTraps = true;
 		newShopTraps = js.getJSONArray("newShopTraps");
+		}
 		
 		// Creating newShopDecos array
-		newShopDecos = new JSONArray();
+		if(js.has("newShopDecos")){
+		has_shopDecos = true;
 		newShopDecos = js.getJSONArray("newShopDecos");
-		
+		}
 		// Filling respawnVars with respawn variables (that's pretty straightforward lol)
+		if(js.has("respawnVars")){
+		has_respawnVars = true;
 		RespawnVars = new respawnVars(js.getJSONObject("respawnVars"));
 		
 		// Getting last vars
@@ -82,7 +91,7 @@ public class Village {
 		last_league_shuffle = js.getInt("last_league_shuffle");
 		last_news_seen = js.getInt("last_news_seen");
 		edit_mode_shown = js.getBoolean("edit_mode_shown");
-		
+		}
 		}catch(JSONException e){
 			e.printStackTrace();
 		}
@@ -92,8 +101,12 @@ public class Village {
 	}
 	
 	public void setLastLeague(int id){
-		// You can use Constants defined in com.SiD3W4y.Objects.Leagues (ex : setLastLeague(Leagues.BRONZE_III)
+		// You can use Constants defined in com.SiD3W4y.objects.Leagues (ex : setLastLeague(Leagues.BRONZE_III)
 		last_league_rank = id;
+	}
+	
+	public boolean hasRespawnVars(){
+		return has_respawnVars;
 	}
 	
 	public void setEditMode(boolean bool){
@@ -105,17 +118,26 @@ public class Village {
 		try {
 			job.put("buildings",buildingLST.getJsonForm());
 			job.put("obstacles", obstacles);
-			job.put("traps",traps);
-			job.put("decos",decos);
-			job.put("respawnVars",RespawnVars.getJsonForm());
+			job.put("traps",trapsLST.getJsonForm());
+			job.put("decos",decosLST.getJsonForm());
 			job.put("cooldowns",cooldowns);
-			job.put("newShopBuildings",newShopBuildings);
-			job.put("newShopTraps",newShopTraps);
-			job.put("newShopDecos",newShopDecos);
+			
+			if(has_respawnVars){
 			job.put("last_league_rank",last_league_rank);
 			job.put("last_league_shuffle",last_league_shuffle);
 			job.put("last_news_seen",last_news_seen);
 			job.put("edit_mode_shown",edit_mode_shown);
+			}
+			
+			if(has_shopBuildings){
+			job.put("newShopBuildings",newShopBuildings);
+			}
+			if(has_shopTraps){
+			job.put("newShopTraps",newShopTraps);
+			}
+			if(has_shopDecos){
+			job.put("newShopDecos",newShopDecos);
+			}
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -130,6 +152,14 @@ public class Village {
 	
 	public respawnVars respawn_vars(){
 		return RespawnVars;
+	}
+	
+	public TrapsList traps(){
+		return trapsLST;
+	}
+	
+	public DecosList decos(){
+		return decosLST;
 	}
 
 

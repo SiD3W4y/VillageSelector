@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.json.*;
 
-import com.SiD3W4y.Objects.Buildings;
+import com.SiD3W4y.objects.Buildings;
 
-public class BuildingObject {
+public class GameObject {
 	
 	// Fixed values
 	
@@ -29,13 +29,18 @@ public class BuildingObject {
 	boolean ctimer;
 	boolean stype;
 	boolean has_units;
+	boolean has_level;
 	
-	public BuildingObject(JSONObject jsob){
+	public GameObject(JSONObject jsob){
 		try{
 		id = jsob.getInt("data");
 		x_pos = jsob.getInt("x");
 		y_pos = jsob.getInt("y");
+		
+		if(jsob.has("lvl")){
 		level = jsob.getInt("lvl");
+		has_level = true;
+		}
 		
 		if(jsob.has("res_time")){
 			collector_timer = jsob.getInt("res_time");
@@ -52,7 +57,7 @@ public class BuildingObject {
 	
 	}
 	
-	public int getBuildingID(){
+	public int getObjectID(){
 		return id;
 	}
 	
@@ -72,14 +77,21 @@ public class BuildingObject {
 		level = (lvl -1);
 	}
 	
+	public void setID(int nid){
+		// Can be dangerous !!! May break your game if not used properly !
+		id = nid;
+	}
+	
 	public JSONObject getJsonForm(){
 		JSONObject js = new JSONObject();
 		try {
 			js.put("data",id);
-			js.put("lvl",level);
 			js.put("x",x_pos);
 			js.put("y", y_pos);
 			
+			if(has_level == true){
+			js.put("lvl",level);
+			}
 			if(ctimer == true){
 				js.put("res_timer",collector_timer);
 			}

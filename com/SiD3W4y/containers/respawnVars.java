@@ -4,14 +4,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class respawnVars {
-	
+
 	private int secondsFromLastRespawn;
 	private int respawnSeed;
 	private int obstacleClearCounter;
 	private int time_to_gembox_drop;
 	private int time_in_gembox_period;
-	
-	public respawnVars(JSONObject jsob){
+
+	public respawnVars(JSONObject jsob) {
 		try {
 			secondsFromLastRespawn = jsob.getInt("secondsFromLastRespawn");
 			respawnSeed = jsob.getInt("respawnSeed");
@@ -21,41 +21,39 @@ public class respawnVars {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	public void setObstacleCounter(int count){
+
+	public void setObstacleCounter(int count) {
 		obstacleClearCounter = count;
 	}
-	
-	public void setNextGemboxDrop(int time){
+
+	public void setNextGemboxDrop(int time) {
 		time_to_gembox_drop = time;
 	}
-	
-	public int getObstacleCounter(){
+
+	public int getObstacleCounter() {
 		return obstacleClearCounter;
 	}
-	
-	public int getNextGemboxDrop(){
+
+	public int getNextGemboxDrop() {
 		return time_to_gembox_drop;
 	}
-	
-	public JSONObject getJsonForm(){
+
+	public JSONObject getJsonForm() {
 		JSONObject jobj = new JSONObject();
 		try {
-			jobj.put("secondsFromLastRespawn",secondsFromLastRespawn);
-			jobj.put("respawnSeed",respawnSeed);
-			jobj.put("obstacleClearCounter",obstacleClearCounter);
-			jobj.put("time_to_gembox_drop",time_to_gembox_drop);
-			jobj.put("time_in_gembox_period",time_in_gembox_period);
+			jobj.put("secondsFromLastRespawn", secondsFromLastRespawn);
+			jobj.put("respawnSeed", respawnSeed);
+			jobj.put("obstacleClearCounter", obstacleClearCounter);
+			jobj.put("time_to_gembox_drop", time_to_gembox_drop);
+			jobj.put("time_in_gembox_period", time_in_gembox_period);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return jobj;
 	}
-	
-	
 
 }

@@ -3,15 +3,17 @@ package com.SiD3W4y.utils;
 import java.util.ArrayList;
 import java.io.*;
 
-public class BuildingConverter {
+public class ObjectConverter {
 	private ArrayList<Integer> id_list;
 	private ArrayList<String> names;
+	private InputStream in;
 	
-	public BuildingConverter(){
+	public ObjectConverter(String respath){
 		id_list = new ArrayList<Integer>();
 		names = new ArrayList<String>();
+		in = getClass().getResourceAsStream(respath);
 		try {
-			BufferedReader br = new BufferedReader(new FileReader("buildings_list.csv"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String line;
 			while((line = br.readLine()) != null){
 				id_list.add(Integer.parseInt(line.split(",")[1]));
