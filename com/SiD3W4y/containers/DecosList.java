@@ -41,7 +41,7 @@ public class DecosList {
 		return arr;
 	}
 	
-	public ArrayList<GameObject> getBuildings(int id){
+	public ArrayList<GameObject> getGameObjects(int id){
 		ArrayList<GameObject> objlist = new ArrayList<GameObject>();
 		
 		for(int i=0;i < decosObjs.size();i++){

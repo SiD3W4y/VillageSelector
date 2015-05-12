@@ -41,7 +41,7 @@ public class Main {
 			// But what if you want to have a little bit more control on the building ?
 			// You can get a list of a specific building type to get fine grain control of the operations !
 			// Here we will get our walls and change the level of the first one in the list !
-			ArrayList<GameObject> objlist = village.buildings().getBuildings(Buildings.WALL);
+			ArrayList<GameObject> objlist = village.buildings().getGameObjects(Buildings.WALL);
 			objlist.get(0).setLevel(11);
 			
 			// Now we want to change the wall level at coords 15,32 for example
