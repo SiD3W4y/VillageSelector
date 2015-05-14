@@ -1,4 +1,4 @@
-package com.SiD3W4y.graphics;
+package com.SiD3W4y.graphics;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -34,14 +34,15 @@ public class ImageBuilder {
 	}
 	
 	public void setBuildings(BuildingsList bls){
-		reset();
 		objlist = bls.getAllObjects();
+		reset();
 	}
 	
 	public void reset(){
 		InputStream in = getClass().getResourceAsStream("/img/background.png");
 		try {
 			tiledBackground = ImageIO.read(in);
+			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -69,9 +70,10 @@ public class ImageBuilder {
 		}
 	}
 	
-	public Graphics getImage(){
-		return tiledBackground.getGraphics();
+	public BufferedImage getImage(){
+		return tiledBackground;
 	}
+
 	
 	
 
