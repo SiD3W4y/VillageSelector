@@ -4,6 +4,7 @@ import com.SiD3W4y.containers.BuildingsList;
 import com.SiD3W4y.containers.DecosList;
 import com.SiD3W4y.containers.TrapsList;
 import com.SiD3W4y.containers.respawnVars;
+import com.SiD3W4y.graphics.ImageBuilder;
 import com.SiD3W4y.objects.Buildings;
 
 import org.json.*;
@@ -12,6 +13,9 @@ import org.json.*;
 public class Village {
 	
 	private String VillageJson;
+	
+	// Graphics part
+	private ImageBuilder grphx;
 	
 	// Some empty stuff (not implemented yet)
 	
@@ -161,6 +165,6 @@ public class Village {
 	public DecosList decos(){
 		return decosLST;
 	}
-
+	
 
 }

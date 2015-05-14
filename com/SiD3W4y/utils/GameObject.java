@@ -82,6 +82,12 @@ public class GameObject {
 		id = nid;
 	}
 	
+	public void setPos(int x,int y){
+		// !!! No collision detection for now !
+		x_pos = x+2;
+		y_pos = y+2;
+	}
+	
 	public JSONObject getJsonForm(){
 		JSONObject js = new JSONObject();
 		try {
