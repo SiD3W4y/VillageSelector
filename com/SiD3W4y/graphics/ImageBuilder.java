@@ -1,4 +1,4 @@
-package com.SiD3W4y.graphics;
+package com.SiD3W4y.graphics;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -31,16 +31,20 @@ public class ImageBuilder {
 	public ImageBuilder(){
 		glist = new GraphicList();
 		oc = new ObjectConverter(Ressource.BUILDINGS);
+	}
+	
+	public void setBuildings(BuildingsList bls){
+		reset();
+		objlist = bls.getAllObjects();
+	}
+	
+	public void reset(){
 		InputStream in = getClass().getResourceAsStream("/img/background.png");
 		try {
 			tiledBackground = ImageIO.read(in);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public void setBuildings(BuildingsList bls){
-		objlist = bls.getAllObjects();
 	}
 	
 	public void process(){
