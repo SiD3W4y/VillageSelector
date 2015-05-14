@@ -16,4 +16,4 @@
 ***Go to the project wiki !***
 
 - Where did you get those tiles ?
-***I used the ones from <http://clashofclansbuilder.com/>
+***I used the ones from*** <http://clashofclansbuilder.com/>
