@@ -14,3 +14,6 @@
 
 - How do i learn using the api ?
 ***Go to the project wiki !***
+
+- Where did you get those tiles ?
+***I used the ones from <http://clashofclansbuilder.com/>
