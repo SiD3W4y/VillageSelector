@@ -30,6 +30,7 @@ public class Buildings {
 	public static int AQ_ALTAR = 1000025;
 	public static int DARK_BARRACKS = 1000026;
 	public static int INFERNO = 1000027;
+	public static int AIR_SWEEPER = 1000028;
 	
 	
 	

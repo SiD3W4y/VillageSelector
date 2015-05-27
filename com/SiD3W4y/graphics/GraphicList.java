@@ -37,13 +37,13 @@ public class GraphicList {
 		query("BK_ALTAR",1,Buildings.BK_ALTAR);
 		query("AQ_ALTAR",1,Buildings.AQ_ALTAR);
 		query("BUILDER_HOUSE",1,Buildings.WORKER_HOUSE);
+		query("AIR_SWEEPER",6,Buildings.AIR_SWEEPER);
 	}
 	
 	public void query(String fname,int maxlvl,int id){
 		for(int i=1;i<(maxlvl+1);i++){
 			String path = "/img/"+fname+"/"+i+".png";
 			texlist.add(new GraphicObject(path,id,i));
-			//System.out.println("Loading : "+path);
 		}
 	}
 	

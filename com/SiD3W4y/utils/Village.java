@@ -44,6 +44,7 @@ public class Village {
 	private boolean has_shopTraps;
 	private boolean has_shopDecos;
 	private boolean has_respawnVars;
+	private boolean has_androidClient;
 	
 	
 	
@@ -89,13 +90,14 @@ public class Village {
 		if(js.has("respawnVars")){
 		has_respawnVars = true;
 		RespawnVars = new respawnVars(js.getJSONObject("respawnVars"));
-		
-		// Getting last vars
-		last_league_rank = js.getInt("last_league_rank");
-		last_league_shuffle = js.getInt("last_league_shuffle");
-		last_news_seen = js.getInt("last_news_seen");
-		edit_mode_shown = js.getBoolean("edit_mode_shown");
 		}
+		
+		// Checking for android_client boolean (needed for dedserver)
+		
+		if(js.has("android_client")){
+			has_androidClient = true;
+		}
+		
 		}catch(JSONException e){
 			e.printStackTrace();
 		}
@@ -127,10 +129,7 @@ public class Village {
 			job.put("cooldowns",cooldowns);
 			
 			if(has_respawnVars){
-			job.put("last_league_rank",last_league_rank);
-			job.put("last_league_shuffle",last_league_shuffle);
-			job.put("last_news_seen",last_news_seen);
-			job.put("edit_mode_shown",edit_mode_shown);
+			job.put("respawnVars",RespawnVars.getJsonForm());
 			}
 			
 			if(has_shopBuildings){
@@ -141,6 +140,9 @@ public class Village {
 			}
 			if(has_shopDecos){
 			job.put("newShopDecos",newShopDecos);
+			}
+			if(has_androidClient){
+				job.put("android_client",true);
 			}
 			
 		} catch (JSONException e) {
